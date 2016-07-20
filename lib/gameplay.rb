@@ -147,7 +147,7 @@ eos
 				elsif char == "◉"
 					char.colorize(:red)
 				elsif char == "◯"
-					char = "◉".colorize(:yellow)
+					char.colorize(:yellow)
 				elsif char =~ /\S/
 					char.colorize(:cyan)
 				else
