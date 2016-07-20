@@ -40,4 +40,8 @@ $ gem install colorize
 ```
 * [Colorize gem](https://github.com/fazibear/colorize) used to color strings
 
+## Screenshot of Gameplay
+![alt tag](https://raw.githubusercontent.com/jeanpaulsio/ruby-exercises/master/10_connectfour/lib/gameplay.jpg)
+
+  
 This implementation of [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) lets you play against the computer on the command line.
