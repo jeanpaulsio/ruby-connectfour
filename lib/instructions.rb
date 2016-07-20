@@ -1,7 +1,9 @@
 require 'colorize'
 require 'colorized_string'
 
-@title = <<-eos
+class Instructions
+	def initialize 
+		@title = <<-eos
 
 
  ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗    ██╗  ██╗
@@ -12,71 +14,34 @@ require 'colorized_string'
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝            ╚═╝
 eos
 
-@board = <<-eos
+		@display_board = <<-eos
   1   2   3   4   5   6   7
 ├───┼───┼───┼───┼───┼───┼───┤
 │ · │ · │ · │ · │ · │ · │ · │
 ├───┼───┼───┼───┼───┼───┼───┤
 │ · │ ·	│ · │ · │ · │ · │ · │
 ├───┼───┼───┼───┼───┼───┼───┤
-│ · │ · │ · │ · │ · │ ◉ │ · │
+│ · │ ·	│ · │ · │ · │ · │ · │
 ├───┼───┼───┼───┼───┼───┼───┤
-│ · │ · │ · │ · │ ◉ │ ◎ │ · │
+│ · │ ·	│ · │ · │ · │ · │ · │
 ├───┼───┼───┼───┼───┼───┼───┤
-│ · │ · │ ◎ │ ◉ │ ◎ │ ◉ │ · │
+│ · │ ·	│ · │ · │ · │ · │ · │
 ├───┼───┼───┼───┼───┼───┼───┤
-│ · │ ◉ │ ◉ │ ◎ │ ◎ │ ◎ │ ◉ │
+│ · │ ·	│ · │ · │ · │ · │ · │
 └───┴───┴───┴───┴───┴───┴───┘
-
 eos
+	
+	display 
+	end
 
+	def display
+		puts @title.colorize(:light_red)
+		puts @display_board
 
-system 'clear'
-puts @title.colorize(:light_red)
-a = @board
-@r = "◉".colorize(:red)
-@y = "◉".colorize(:yellow)
-
-b = a.split('')
-b.map! do |chr|
-	if chr == "◉"
-		chr = @r
-	elsif chr == "◎"
-		chr = @y
-	elsif chr =~ /\d+/
-		chr.colorize(:white)
-	else
-		chr.colorize(:cyan)
+		puts "\n» GAME RULES\n" +
+		     "» Player 1 game piece: ◉\n" +
+		     "» Player 2 game piece: ◯\n" + 
+		     "» Players drop their token by typing in a column number\n" +
+		     "» 4 marks in a row wins\n"
 	end
 end
-
-puts b.join('')
-
-
-
-#red 
-x_moves = [
-	{x: 4, y: 1}, 
-	{x: 5, y: 1}, 
-	{x: 3, y: 2},
-	{x: 4, y: 3}, 
-	{x: 6, y: 1}, 
-	{x: 2, y: 2},	
-	{x: 2, y: 3}, 
-	{x: 1, y: 2},	
-	{x: 2, y: 4}
-													
-	]
-
-#yellow
-y_moves = [
-	{x: 3, y: 1},
-	{x: 4, y: 2},
-	{x: 2, y: 1},
-	{x: 5, y: 2},
-	{x: 7, y: 1},
-	{x: 5, y: 3},
-	{x: 1, y: 1},
-	{x: 1, y: 3},
-	{x: 7, y: 2}
-	]
