@@ -38,12 +38,26 @@ eos
 
 	def display
 		puts @title.colorize(:light_red)
-		puts @display_board
+		colorize(@display_board)
 
-		puts "\n» GAME RULES\n" +
-		     "» Player 1 game piece: ◉\n" +
-		     "» Player 2 game piece: ◯\n" + 
-		     "» Players drop their token by typing in a column number\n" +
-		     "» 4 marks in a row wins\n"
+		puts "\n» GAME RULES\n".colorize(:white) +
+		     "#{"» Player 1 game piece:".colorize(:white)} #{"◉".colorize(:red)}\n" +
+		     "#{"» Player 2 game piece:".colorize(:white)} #{"◉".colorize(:yellow)}\n" + 
+		     "» Players drop their token by typing in a column number\n".colorize(:white) +
+		     "» 4 marks in a row wins\n".colorize(:white)
+	end
+
+	def colorize(board)
+		colorize = board.split('')
+		colorize.map! do |char|
+			if char =~ /\d/
+				char.colorize(:white)
+			elsif char =~ /\S/
+				char.colorize(:cyan)
+			else
+				char
+			end
+		end
+		puts colorize.join('')
 	end
 end

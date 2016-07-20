@@ -135,7 +135,28 @@ eos
 	end
 
 	def display_board
-		puts @board
+		colorize_board(@board)
+	end
+
+	def colorize_board(board)
+		lines = board.map do |line|
+			colorize = line.split('')
+			colorize.map! do |char|
+				if char =~ /\d/
+					char.colorize(:white)
+				elsif char == "◉"
+					char.colorize(:red)
+				elsif char == "◯"
+					char = "◉".colorize(:yellow)
+				elsif char =~ /\S/
+					char.colorize(:cyan)
+				else
+					char
+				end
+			end
+			colorize.join('')
+		end
+		puts lines
 	end
 
 	def game_over(player)
