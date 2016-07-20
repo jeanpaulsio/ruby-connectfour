@@ -1,6 +1,7 @@
 # Command Line Connect Four
 
 This game was built using TDD
+[RSpec Documentation](https://relishapp.com/rspec)
 
 ## Gameplay and Rules
 ```
