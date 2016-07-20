@@ -33,4 +33,11 @@ This game was built using TDD
 » Players drop their token by typing in a column number
 » 4 marks in a row wins
 ```
+  
+## Installation
+```
+$ gem install colorize
+```
+* [Colorize gem](https://github.com/fazibear/colorize) used to color strings
+
 This implementation of [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) lets you play against the computer on the command line.
