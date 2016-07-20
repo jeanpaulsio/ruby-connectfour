@@ -1,9 +1,13 @@
+require 'colorize'
+require 'colorized_string'
+
 require_relative 'player'
+require_relative 'checkwin'
 
 class GamePlay
 	attr_accessor :player1, :player2, :top, 
 								:row6, :row5, :row4, :row3, :row2, :row1,
-								:board, :all_moves
+								:board, :all_moves, :checkwins
 
 	def initialize
 		@player1   = Player.new("Player 1", "◉")
@@ -37,13 +41,13 @@ eos
 │ · │ · │ · │ · │ · │ · │ · │
 └───┴───┴───┴───┴───┴───┴───┘
 eos
+		
 		@board     = [@top, @row6, @row5, @row4, @row3, @row2, @row1]
 		@all_moves = []
-	
-		#play_game(@player1)
+		@checkwins = CheckWin.new
 	end
-=begin
-	# TODO: give POODR Treatment + Testing
+
+	# TODO: give POODR Treatment + TDD
 	def play_game(player)
 		puts "\n#{player.name}'s Turn:"
 		ans = player.take_turn
@@ -51,28 +55,29 @@ eos
 		if valid_column?(ans) && !column_full?(ans)
 			row_number = find_row_to_place(ans)
 			@all_moves << ans
-
+			player.moves << {x: ans, y: row_number}
+			
 			target_row = get_row(row_number)
 			new_row    = place_move(ans, target_row, player)
 			place_row(new_row, row_number)
-
-#
-			player.moves << {x: ans, y: row_number}
-			system 'clear' or system 'cls'
-			puts @board
-			game_over(player) if check_win(player)
-			tie_game          if @all_moves.size == 42
-#		
 			
+			clear_screen
+			display_board
+
+			game_over(player) if check_win(player)
+			tie_game          if @all_moves.size == 42	
 		else
-			puts "» Sorry, #{ans} isn't a valid column\n"
+			invalid_column(ans)
 			play_game(player)
 		end
 
+		switch_players(player)
+	end
+
+	def switch_players(player)
 		player = player == @player1 ? @player2 : @player1
 		play_game(player)
 	end
-=end
 
 	def valid_column?(ans)
 		(1..7).include? ans
@@ -112,23 +117,34 @@ eos
 	end
 
 	def check_win(player)
-		a = CheckWin.new
-		i = a.positive_slope_origin(player.moves)
-		j = a.negative_slope_origin(player.moves)
+		i = checkwins.positive_slope_origin(player.moves)
+		j = checkwins.negative_slope_origin(player.moves)
 
-		a.vertical_win?(player.moves)           == a.winning_connection_count ||
-		a.horizontal_win?(player.moves)         == a.winning_connection_count ||
-		a.count_positive_slope(i, player.moves) == a.winning_connection_count ||
-		a.count_negative_slope(j, player.moves) == a.winning_connection_count
+		checkwins.vertical_win?(player.moves)           == 4 ||
+		checkwins.horizontal_win?(player.moves)         == 4 ||
+		checkwins.count_positive_slope(i, player.moves) == 4 ||
+		checkwins.count_negative_slope(j, player.moves) == 4
+	end
+
+	def invalid_column(col)
+		puts "» Sorry, #{col} isn't a valid column\n"
+	end
+
+	def clear_screen
+		system 'clear' or system 'cls'
+	end
+
+	def display_board
+		puts @board
 	end
 
 	def game_over(player)
-		puts "Player #{player.name} Wins!"
+		puts "#{player.name} Wins!"
 		exit
 	end
 
 	def tie_game
-		puts "Tie Game!"
+		puts "Tie Game! You played Yourself."
 		exit
 	end
 end

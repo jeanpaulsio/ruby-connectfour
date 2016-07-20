@@ -8,4 +8,7 @@ require_relative 'gameplay'
 
 
 Instructions.new
-GamePlay.new
+connect_four = GamePlay.new
+first_player = connect_four.player1
+
+connect_four.play_game(first_player)

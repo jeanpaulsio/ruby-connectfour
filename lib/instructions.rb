@@ -2,6 +2,8 @@ require 'colorize'
 require 'colorized_string'
 
 class Instructions
+	attr_reader :title
+
 	def initialize 
 		@title = <<-eos
 
