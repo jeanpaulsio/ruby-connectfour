@@ -42,7 +42,7 @@ eos
 
 		puts "\n» GAME RULES\n".colorize(:white) +
 		     "#{"» Player 1 game piece:".colorize(:white)} #{"◉".colorize(:red)}\n" +
-		     "#{"» Player 2 game piece:".colorize(:white)} #{"◉".colorize(:yellow)}\n" + 
+		     "#{"» Player 2 game piece:".colorize(:white)} #{"◯".colorize(:yellow)}\n" + 
 		     "» Players drop their token by typing in a column number\n".colorize(:white) +
 		     "» 4 marks in a row wins\n".colorize(:white)
 	end
