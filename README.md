@@ -43,5 +43,9 @@ $ gem install colorize
 ## Screenshot of Gameplay
 ![alt tag](https://raw.githubusercontent.com/jeanpaulsio/ruby-exercises/master/10_connectfour/lib/gameplay.jpg)
 
+## Gameplay
+```
+$ ruby lib/connectfour.rb
+```
 
 This implementation of [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) lets you play against another user on the command line.
