@@ -1,6 +1,6 @@
 # Command Line Connect Four
 
-This game was built using TDD  
+This game was built using TDD
 [RSpec Documentation](https://relishapp.com/rspec)
 
 ## Gameplay and Rules
@@ -33,7 +33,7 @@ This game was built using TDD
 » Players drop their token by typing in a column number
 » 4 marks in a row wins
 ```
-  
+
 ## Installation
 ```
 $ gem install colorize
@@ -43,5 +43,5 @@ $ gem install colorize
 ## Screenshot of Gameplay
 ![alt tag](https://raw.githubusercontent.com/jeanpaulsio/ruby-exercises/master/10_connectfour/lib/gameplay.jpg)
 
-  
-This implementation of [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) lets you play against the computer on the command line.
+
+This implementation of [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) lets you play against another user on the command line.
